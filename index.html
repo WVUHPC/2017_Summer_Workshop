@@ -17,6 +17,9 @@ contact: ["gufranco_@_mail.wvu.edu"]    # boxed, comma-separated list of contact
 collaborative_notes:             # optional: URL for the workshop collaborative notes, e.g. an Etherpad or Google Docs document
 eventbrite:           # optional: alphanumeric key for Eventbrite registration, e.g., "1234567890AB" (if Eventbrite is being used)
 with_shell: "no"
+with_editor: "no"
+with_python: "no"
+with_r: "no"
 ---
 
 <!-- See instructions in the comments below for how to edit specific sections of this workshop template. -->
@@ -407,7 +410,7 @@ resources.</p>
 </div> <!-- End of 'shell' section. -->
 {% endif %}
 
-
+{% if page.with_git == "yes" %}
 <div id="git"> <!-- Start of 'Git' section. GitHub browser compatability
            is given at https://help.github.com/articles/supported-browsers/-->
   <h3>Git</h3>
@@ -463,7 +466,9 @@ resources.</p>
     </div>
   </div>
 </div> <!-- End of 'Git' section. -->
+{% endif %}
 
+{% if page.with_editor == "yes" %}
 <div id="editor"> <!-- Start of 'editor' section. -->
   <h3>Text Editor</h3>
 
@@ -535,7 +540,9 @@ resources.</p>
     </div>
   </div>
 </div> <!-- End of 'editor' section. -->
+{% endif %}
 
+{% if page.with_python == "yes" %}
 <div id="python"> <!-- Start of 'Python' section. Remove the third paragraph if
            the workshop will teach Python using something other than
            the IPython notebook.
@@ -627,7 +634,9 @@ resources.</p>
   </p>
 -->
 </div> <!-- End of 'Python' section. -->
+{% endif %}
 
+{% if page.with_r == "yes" %}
 <div id="r"> <!-- Start of 'R' section. -->
   <h3>R</h3>
 
@@ -678,7 +687,9 @@ resources.</p>
     </div>
   </div>
 </div> <!-- End of 'R' section. -->
+{% endif %}
 
+{% if page.with_sql == "yes" %}
 <div id="sql"> <!-- Start of 'SQLite' section. -->
   <h3>SQLite</h3>
 
@@ -724,7 +735,9 @@ resources.</p>
     <a href="https://github.com/ContinuumIO/anaconda-issues/issues/307">without support to <code>readline</code></a>.
     Instructors will provide a workaround for it if needed.</strong></p>
 </div> <!-- End of 'SQLite' section. -->
+{% endif %}
 
+{% if page.with_openrefine == "yes" %}
 <div id="openrefine"> <!-- Start of 'OpenRefine' section. -->
   <h3>OpenRefine</h3>
   <p>
@@ -771,9 +784,7 @@ resources.</p>
     </div>
   </div>
 </div> <!-- End of 'OpenRefine' section. -->
-
-
-
+{% endif %}
 
 <!--
   Uncomment this section if you are using our virtual machine.
