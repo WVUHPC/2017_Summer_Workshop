@@ -16,6 +16,7 @@ helper: ["Sadegh Faramarzi Ganjabad, Chitrak Gupta"]     # boxed, comma-separate
 contact: ["gufranco_@_mail.wvu.edu"]    # boxed, comma-separated list of contact email addresses for the host, lead instructor, or whoever else is handling questions, like ["marlyn.wescoff@example.org", "fran.bilas@example.org", "ruth.lichterman@example.org"]
 collaborative_notes:             # optional: URL for the workshop collaborative notes, e.g. an Etherpad or Google Docs document
 eventbrite:           # optional: alphanumeric key for Eventbrite registration, e.g., "1234567890AB" (if Eventbrite is being used)
+with_shell: "no"
 ---
 
 <!-- See instructions in the comments below for how to edit specific sections of this workshop template. -->
@@ -217,11 +218,7 @@ resources.</p>
   2' to be actual dates or days of the week.
 -->
 <h2 id="schedule">Schedule</h2>
-<h2 id="schedule">Schedule</h2>
-<h2 id="schedule">Schedule</h2>
-<h2 id="schedule">Schedule</h2>
 
-HOLA
 <!-- DO NOT EDIT SURVEY LINKS -->
 
 <p><em>Surveys</em></p>
@@ -319,9 +316,9 @@ HOLA
 </p>
 -->
 
+{% if page.with_shell == "yes" %}
 <div id="shell"> <!-- Start of 'shell' section. -->
-  <h3>The Bash Shell</h3>
-
+<h3>The Bash Shell</h3>
   <p>
     Bash is a commonly-used shell that gives you the power to do simple
     tasks more quickly.
@@ -408,7 +405,7 @@ HOLA
     </div>
   </div>
 </div> <!-- End of 'shell' section. -->
-
+{% endif %}
 
 
 <div id="git"> <!-- Start of 'Git' section. GitHub browser compatability
