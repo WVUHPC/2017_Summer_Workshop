@@ -1,0 +1,122 @@
+I"- <h2 id="general">General</h2>
+
+<dl>
+  <dt><em>Where can I get help?</em></dt>
+  <dd>Mail us at <a href="mailto:gufranco@mail.wvu.edu">gufranco@mail.wvu.edu</a>,
+or join our <a href="https://software-carpentry.org/join/">discussion list</a>
+and ask for help there.</dd>
+  <dt><em>What if I can’t wait?</em></dt>
+  <dd>Run <code class="language-plaintext highlighter-rouge">make workshop-check</code> to run the workshop homepage checking program on <code class="language-plaintext highlighter-rouge">index.html</code>.</dd>
+  <dt><em>Where can I report problems or suggest improvements?</em></dt>
+  <dd>Please file an issue against <a href="this repository">https://github.com/swcarpentry/workshop-template</a>
+or <a href="mailto:gufranco@mail.wvu.edu">mail us</a>.</dd>
+  <dt><em>Why does the workshop repository have to be created by importing rather than forking?</em></dt>
+  <dd>Because any particular user can only have one fork of a repository,
+but instructors frequently need to work on several workshops at once.</dd>
+  <dt><em>Why do I have to be logged in before I start the import?</em></dt>
+  <dd>It’s a known issue with GitHub’s importer.</dd>
+  <dt><em>Why does the workshop repository name have to follow the <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-site</code> pattern?</em></dt>
+  <dd>This makes it easy for coordinators to track workshops.
+There are plans to move that coordination into <a href="https://github.com/swcarpentry/amy">AMY</a>,
+but until that happens this pattern makes it easy to sort workshops
+by date without requiring an additional start-date column.
+<strong>Note: <code class="language-plaintext highlighter-rouge">YYYY-MM-DD</code> should be the start date of the workshop.</strong></dd>
+  <dt><em>Why use the <code class="language-plaintext highlighter-rouge">gh-pages</code> branch instead of <code class="language-plaintext highlighter-rouge">master</code>?</em></dt>
+  <dd>Because <a href="https://help.github.com/articles/creating-project-pages-manually/">GitHub automatically publishes <code class="language-plaintext highlighter-rouge">gh-pages</code></a> as a website.</dd>
+  <dt><em>Why use Jekyll?  Why not some other markup language and some other converter?</em></dt>
+  <dd>Because it’s the only tool supported by GitHub Pages.</dd>
+  <dt><em>Where should pages go if multiple workshops are running at a site simultaneously?</em></dt>
+  <dd>Use subdirectories like <code class="language-plaintext highlighter-rouge">2015-07-01-esu/beginners</code>,
+so that repository names always follow our four-part convention.</dd>
+  <dt><em>What if I want to add more values to <code class="language-plaintext highlighter-rouge">index.html</code>, like <code class="language-plaintext highlighter-rouge">address1</code> and <code class="language-plaintext highlighter-rouge">address2</code> for different rooms on different days?</em></dt>
+  <dd>Go ahead,
+but you <em>must</em> have the variables described in the customization instructions.</dd>
+  <dt><em>What is the “Windows installer”?</em></dt>
+  <dd>We have built a small installation helper for Windows
+that installs nano and SQLite, adds R to the path, and so on.
+It is maintained in
+<a href="https://github.com/swcarpentry/windows-installer">https://github.com/swcarpentry/windows-installer</a>
+which also has an up-to-date description of what it actually does.
+The latest version is always available at
+<a href="http://files.software-carpentry.org/SWCarpentryInstaller.exe">http://files.software-carpentry.org/SWCarpentryInstaller.exe</a>,
+and contributions are always welcome.</dd>
+</dl>
+
+<h2 id="debugging">Debugging</h2>
+
+<dl>
+  <dt><em>Help, my website is not updating!</em></dt>
+  <dd>Ensure that strings in the header of <code class="language-plaintext highlighter-rouge">index.html</code> are enclosed in quotations <code class="language-plaintext highlighter-rouge">"</code>.
+Special characters such as <code class="language-plaintext highlighter-rouge">"&amp;"</code> may render correctly on your local machine
+but cause rendering to fail silently on GitHub.</dd>
+  <dt><em>Eventbrite registration isn’t showing up on the workshop’s home page.</em></dt>
+  <dd>First check that you have something like:
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eventbrite: 1234567890AB
+</code></pre></div>    </div>
+
+    <p>in the YAML header of <code class="language-plaintext highlighter-rouge">index.html</code>.
+If the YAML header is set properly you may be accessing
+<code class="language-plaintext highlighter-rouge">file:///home/to/workshop/directory/_site/index.html</code> directly.
+Instead,
+please run</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ make serve
+</code></pre></div>    </div>
+
+    <p>and look at <code class="language-plaintext highlighter-rouge">http://localhost:4000</code> in your browser
+(or push your changes to GitHub and view your page there).</p>
+  </dd>
+  <dt><em>What do I do if I see a <code class="language-plaintext highlighter-rouge">invalid byte sequence in ...</code> error when I run <code class="language-plaintext highlighter-rouge">tools/check</code>?</em></dt>
+  <dd>Your computer is telling you that it doesn’t understand some of the characters you’re using.
+Declare your locale to be <code class="language-plaintext highlighter-rouge">en_US.UTF-8</code> in your shell:
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export LC_ALL=en_US.UTF-8
+$ export LANG=en_US.UTF-8
+</code></pre></div>    </div>
+  </dd>
+  <dt><em>What do I do if I get a “can’t convert nil into String” error?</em></dt>
+  <dd>On some Linux distributions (e.g, Ubuntu 14.04), you may get this error:
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./tools/preview
+/usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in `require': iconv will be deprecated in the future, use String#encode instead.
+/usr/lib/ruby/1.9.1/time.rb:265:in `_parse': can't convert nil into String (TypeError)
+    from /usr/lib/ruby/1.9.1/time.rb:265:in `parse'
+    from /usr/bin/jekyll:95:in `block (2 levels) in &lt;main&gt;'
+    from /usr/lib/ruby/1.9.1/optparse.rb:1391:in `call'
+    from /usr/lib/ruby/1.9.1/optparse.rb:1391:in `block in parse_in_order'
+    from /usr/lib/ruby/1.9.1/optparse.rb:1347:in `catch'
+    from /usr/lib/ruby/1.9.1/optparse.rb:1347:in `parse_in_order'
+    from /usr/lib/ruby/1.9.1/optparse.rb:1341:in `order!'
+    from /usr/lib/ruby/1.9.1/optparse.rb:1432:in `permute!'
+    from /usr/lib/ruby/1.9.1/optparse.rb:1453:in `parse!'
+    from /usr/bin/jekyll:137:in `&lt;main&gt;'
+</code></pre></div>    </div>
+
+    <p>This occurs because you are using an old version of Jekyll located in <code class="language-plaintext highlighter-rouge">/usr/bin</code>.
+Make sure that you have installed Jekyll using:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ gem install jekyll
+</code></pre></div>    </div>
+
+    <p>This installs Jekyll in <code class="language-plaintext highlighter-rouge">/usr/local/bin</code>,
+so make sure this directory comes before <code class="language-plaintext highlighter-rouge">/usr/bin</code> in your <code class="language-plaintext highlighter-rouge">PATH</code> environment variable.
+When your path is set correctly,
+you should see:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ which jekyll
+/usr/local/bin/jekyll
+</code></pre></div>    </div>
+
+    <p>You may also have to install the <code class="language-plaintext highlighter-rouge">nodejs</code> package to disable references to JavaScript,
+which you can do using:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install nodejs
+</code></pre></div>    </div>
+
+    <p>For more information,
+see <a href="http://michaelchelen.net/81fa/install-jekyll-2-ubuntu-14-04/">http://michaelchelen.net/81fa/install-jekyll-2-ubuntu-14-04/</a>.</p>
+  </dd>
+</dl>
+
+:ET

@@ -1,0 +1,63 @@
+I"u<p>This directory contains scripts for testing your machine to make sure
+you have the software you’ll need for your workshop installed.  To use
+these scripts:</p>
+
+<ol>
+  <li>
+    <p>Download <a href="swc-installation-test-1.py">swc-installation-test-1.py</a>.</p>
+  </li>
+  <li>
+    <p>Run it from the shell:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python swc-installation-test-1.py
+Passed
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Download <a href="swc-installation-test-2.py">swc-installation-test-2.py</a>.</p>
+  </li>
+  <li>
+    <p>Run it from the shell:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python swc-installation-test-2.py
+check virtual-shell...  pass
+...
+Successes:
+
+virtual-shell Bourne Again Shell (bash) 4.2.37
+...
+</code></pre></div>    </div>
+
+    <p>If you see something like:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python swc-installation-test-2.py
+check virtual-shell...  fail
+...
+check for command line shell (virtual-shell) failed:
+  command line shell (virtual-shell) requires at least one of the following dependencies
+  For instructions on installing an up-to-date version, see
+  http://software-carpentry.org/setup/
+  causes:
+  check for Bourne Again Shell (bash) failed:
+    could not find 'bash' executable for Bourne Again Shell (bash)
+    For instructions on installing an up-to-date version, see
+    http://software-carpentry.org/setup/
+...
+</code></pre></div>    </div>
+
+    <p>follow the suggestions to try and install any missing software.  For
+additional troubleshooting information, you can use the <code class="language-plaintext highlighter-rouge">--verbose</code>
+option:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python swc-installation-test-2.py --verbose
+check virtual-shell...  fail
+...
+==================
+System information
+==================
+os.name            : posix
+...
+</code></pre></div>    </div>
+  </li>
+</ol>
+:ET
